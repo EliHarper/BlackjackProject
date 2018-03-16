@@ -32,6 +32,15 @@ public class BlackjackApp {
 		
 		System.out.println("\nYour cards: ");
 		showUserHand();
+		System.out.println("\nDealer shows: ");
+		showDealerCard();
+		System.out.println();
+		System.out.println(userName + ", would you like to hit or to stay?");
+		String hitOrStay = kb.nextLine();
+		if (hitOrStay.startsWith("h")) {
+			hitUser();
+		}
+		
 		
 	}
 	
@@ -95,7 +104,6 @@ public class BlackjackApp {
 	
 	public void showDealerCard() {
 		List<Card> dealerHand = hand.getDealerHand();
-		
-		System.out.println(hand.getDealerHand());
+		System.out.println(dealerHand.get(0));
 	}
 }
