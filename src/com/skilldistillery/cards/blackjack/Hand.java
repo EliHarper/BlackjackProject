@@ -6,20 +6,26 @@ import java.util.List;
 import com.skilldistillery.cards.common.Card;
 
 public class Hand {
-	List<Card> hand = new ArrayList<>();
-	
-	public List<Card> hand(){
-		
-		return hand;
+	private List<Card> dealerHand = new ArrayList<>();
+	private List <Card> userHand = new ArrayList<>();
+
+	public Hand(){
 	}
 	
-	public void addCard(Card cardDealt) {
-		
+	public List<Card> getDealerHand(){
+		return dealerHand;
 	}
 	
-	public List<Card> getCardsInHand(){
-		
-		return hand;
+	public void addToDealerHand(Card card) {
+		dealerHand.add(card);
+	}
+
+	public void addToUserHand(Card card) {
+		userHand.add(card);
+	}
+
+	public List<Card> getUserHand(){
+		return userHand;
 	}
 	
 	public int getValueOfHand() {

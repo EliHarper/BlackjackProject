@@ -3,11 +3,12 @@ package com.skilldistillery.cards.blackjack;
 import java.util.List;
 
 import com.skilldistillery.cards.common.Card;
+import com.skilldistillery.cards.common.Deck;
 
 public class Dealer extends AbstractDealer {
-
-	public Dealer(String name, List<Card> hand, int moneys) {
-		super(name, hand, moneys);
+	
+	public Dealer(String name, List<Card> dealerHand) {
+		super(name, dealerHand);
 	}
 
 	@Override
@@ -15,5 +16,5 @@ public class Dealer extends AbstractDealer {
 		
 		return false;
 	}
-
+	
 }

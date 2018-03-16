@@ -1,13 +1,14 @@
 package com.skilldistillery.cards.blackjack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.cards.common.Card;
 
 public class User extends Player {
-
-	public User(String name, List<Card> hand, int moneys) {
-		super(name, hand, moneys);
+	
+	public User(String name, List<Card> hand) {
+		super(name, hand);
 	}
 	
 	@Override
@@ -15,6 +16,8 @@ public class User extends Player {
 		
 		return false;
 	}
+	
+	
 	
 	
 	

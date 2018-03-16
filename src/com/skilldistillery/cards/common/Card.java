@@ -1,5 +1,8 @@
 package com.skilldistillery.cards.common;
 
+import com.skilldistillery.cards.common.Rank;
+import com.skilldistillery.cards.common.Suit;
+
 public class Card {
 
 	private Rank rank;

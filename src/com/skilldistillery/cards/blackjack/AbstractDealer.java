@@ -6,8 +6,8 @@ import com.skilldistillery.cards.common.Card;
 
 public abstract class AbstractDealer extends Player {
 
-	public AbstractDealer(String name, List<Card> hand, int moneys) {
-		super(name, hand, moneys);
+	public AbstractDealer(String name, List<Card> hand) {
+		super(name, hand);
 	}
 
 	protected boolean hitMe() {

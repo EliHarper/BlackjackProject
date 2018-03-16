@@ -4,34 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.skilldistillery.cards.blackjack.BlackjackApp;
+import com.skilldistillery.cards.blackjack.Hand;
+
 public class Deck {
-	List<Card> deck;
+	public List<Card> deck;
 	
-//	public static void main(String[] args) {
-//		Deck deck = new Deck();
-//		//deck.run();
-//	}
-	protected void run() {
-//		checkDeckSize(deck);
-//		shuffle(deck);
-		dealCard(deck);
-	}
-	
-	protected Deck() {
+	public Deck() {
 		List<Card> deck = createDeck();
 	}
 	
-	private void dealCard(List<Card> deck) {
+	public Card dealCard(List<Card> deck) {
 		Card cardDealt = deck.remove(0);
-		System.out.println(cardDealt);
+		return cardDealt;
 	}
 
-	protected List<Card> shuffle(List<Card> deck) {
+	public List<Card> shuffle(List<Card> deck) {
 		Collections.shuffle(deck);
 		return deck;
 	}
 
-	protected void checkDeckSize(List<Card> deck) {
+	public void checkDeckSize(List<Card> deck) {
 		if (deck.size() == 52) {
 			System.out.println("Deck size is checked, 52 cards are present.");
 		}
@@ -40,7 +33,7 @@ public class Deck {
 		}
 	}
 
-	protected List<Card> createDeck() {
+	public List<Card> createDeck() {
 		deck = new ArrayList<>(52);
 		for (Suit s : Suit.values()) {
 			for(Rank r : Rank.values()) {
