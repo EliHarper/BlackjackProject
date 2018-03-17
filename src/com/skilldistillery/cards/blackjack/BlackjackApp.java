@@ -20,7 +20,7 @@ public class BlackjackApp {
 		
 		System.out.println("What is your name?");
 		String userName = kb.next();
-		System.out.print("Alright, " + userName + ".");
+		System.out.print("\nAlright, " + userName + ".");
 		System.out.println(" Let's play some blackjack!");
 		System.out.println("***********************************\n");
 		
@@ -35,11 +35,26 @@ public class BlackjackApp {
 		System.out.println("\nDealer shows: ");
 		showDealerCard();
 		System.out.println();
+		System.out.print("Your hand is worth: ");
+		hand.getUserHand();
 		System.out.println(userName + ", would you like to hit or to stay?");
-		String hitOrStay = kb.nextLine();
+		String hitOrStay = kb.next();
 		if (hitOrStay.startsWith("h")) {
-			hitUser();
+			while (true) {
+				hitUser();
+				System.out.print("Your hand is now worth: ");
+				hand.getUserHand();
+				
+				System.out.println(userName + ", would you like to hit or to stay?");
+				hitOrStay = kb.next();
+				if (hitOrStay.startsWith("s")) {
+					break;
+				}
+			}
 		}
+		
+		
+		
 		
 		
 	}
@@ -74,11 +89,13 @@ public class BlackjackApp {
 	
 	public void hitUser() {
 		Card c = d.deck.remove(0);
+		System.out.println(c.toString());
 		hand.addToUserHand(c);
 	}
 	
 	public void hitDealer() {
 		Card c = d.deck.remove(0);
+		System.out.println(c.toString());
 		hand.addToDealerHand(c);
 	}
 	

@@ -27,8 +27,8 @@ public class Card {
 		return suit;
 	}
 	
-	public Rank getValue() {
-		return rank;
+	public int getValue() {
+		return rank.getValue();
 	}
 
 	@Override
