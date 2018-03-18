@@ -5,7 +5,7 @@ import com.skilldistillery.cards.common.Suit;
 
 public class Card {
 
-	private Rank rank;
+	public Rank rank;
 	private Suit suit;
 
 	public Card(Suit suit, Rank rank) {

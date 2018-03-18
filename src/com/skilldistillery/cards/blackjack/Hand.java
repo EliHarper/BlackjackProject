@@ -33,13 +33,16 @@ public class Hand {
 		for (int i = 0; i < dealerHand.size(); i++) {
 			sum += dealerHand.get(i).getValue();
 		}
+		
 		return sum;
 	}
 	public int getValueOfUserHand() {
 		int sum = 0;
-		for (int i = 0; i < userHand.size(); i++) {
-			sum += userHand.get(i).getValue();
-		}
-		return sum;
+	for(int i=0; i<userHand.size(); i++) {
+	      Card c = userHand.get(i);
+	      sum += c.rank.getValue();
+	    }
+	
+	return sum;
 	}
 }
