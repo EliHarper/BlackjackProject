@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.cards.common.Card;
+import com.skilldistillery.cards.common.Deck;
 
 public class Hand {
 	private List<Card> dealerHand = new ArrayList<>();
@@ -32,10 +33,18 @@ public class Hand {
 	}
 	
 	public void addToDealerHand(Card card) {
+		if (card == null) {
+			System.out.println("Deck is now empty; we will continue with a new deck.");
+			Deck deck = new Deck();
+		}
 		dealerHand.add(card);
 	}
 
 	public void addToUserHand(Card card) {
+		if (card == null) {
+			System.out.println("Deck is now empty; we will continue with a new deck.");
+			Deck deck = new Deck();
+		}
 		userHand.add(card);
 	}
 

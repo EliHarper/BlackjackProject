@@ -17,14 +17,14 @@ public class Card {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(rank);
+		builder.append(rank.name());
 		builder.append(" of ");
-		builder.append(suit);
+		builder.append(suit.getName());
 		return builder.toString();
 	}
 
-	public Suit getSuit() {
-		return suit;
+	public String getSuit() {
+		return suit.name();
 	}
 	
 	public int getValue() {

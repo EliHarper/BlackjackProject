@@ -3,6 +3,7 @@ package com.skilldistillery.cards.blackjack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Timer;
 
 import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
@@ -117,7 +118,7 @@ public class BlackjackApp {
 
 	private void playAgain() {
 		
-		System.out.println("\nWould you like to play again?");
+		System.out.println("Would you like to play again?");
 		
 		if (won) {
 			System.out.println("Remember.. NEVER quit when you're on a heater.");
@@ -217,6 +218,7 @@ public class BlackjackApp {
 	}
 
 	private void destroy() {
+		System.err.println("Blackjack simulator self-destruct sequence engaged.");
 		kb.close();
 		System.exit(0);
 	}
