@@ -21,7 +21,7 @@ public class BlackjackApp {
 
 		Dealer d = new Dealer("Doug", hand.getDealerHand());
 		User u = new User(userName, hand.getUserHand());
-		dealerAction();
+		deckPrep();
 		giveUserHand();
 		giveDealerHand();
 
@@ -30,36 +30,32 @@ public class BlackjackApp {
 		System.out.println("\nDealer shows: ");
 		showDealerCard();
 		System.out.println();
-		System.out.print("Your hand is worth " + hand.getValueOfUserHand() + ". ");
+		System.out.print("\nYour hand is worth " + hand.getValueOfUserHand() + ". ");
 		System.out.println(userName + ", would you like to hit or to stay?");
 		String hitOrStay = kb.next();
 		if (hitOrStay.startsWith("h")) {
 			while (true) {
 				hitUser();
-				System.out.print("Your hand is now worth " + hand.getValueOfUserHand() + " ");
+				System.out.print("Your hand is now worth " + hand.getValueOfUserHand() + ". ");
 				if (hand.getValueOfUserHand() > 21) {
-					System.out.println("Bust! You lose this round. Would you like to play again?");
-					playAgain = kb.next();
-					if (playAgain.startsWith("y")) {
-						run();
-					}
-					else {
-						System.out.println("Goodbye, " + userName + "!");
-						destroy();
-					}
+					System.out.println("Bust! You lose this round.");
+					playAgain();
+				}
+				else if(hand.getValueOfUserHand() == 21) {
+					System.out.println("Nice!");
+					dealerLogic();
 				}
 				System.out.println(userName + ", would you like to hit or to stay?");
 				hitOrStay = kb.next();
-				if (hitOrStay.startsWith("s")) {
-					break;
+				hitOrStay.toLowerCase();
+				if (hitOrStay.contains("s")) {
+					dealerLogic();
 				}
 			}
 		}
-		
-		//Dealer Logic:
-		
-		
-
+		else {
+			dealerLogic();
+		}
 	}
 
 	public static void main(String[] args) {
@@ -69,37 +65,77 @@ public class BlackjackApp {
 
 	private void preRun() {
 		System.out.println("What is your name?");
-		userName = kb.next();
+		userName = kb.nextLine();
 		System.out.print("\nAlright, " + userName + ".");
-		System.out.println(" Let's play some blackjack!");
-		System.out.println("***********************************\n");
+		System.out.println(" Let's play some Blackjack!");
+		int starLineLength = userName.length() + 37;
+		for (int i = 0; i < starLineLength; i++) {
+			System.out.print("*");
+		}
+		System.out.println();
 	}
 
-	protected void dealerAction() {
+	protected void deckPrep() {
 		deck = d.createDeck();
 		d.checkDeckSize(deck);
 		d.shuffle(deck);
+	}
+	
+	protected void dealerLogic() {
+		System.out.println("\nDealer's hole card: ");
+		showDealerHoleCard();
+		while (hand.getValueOfUserHand() > hand.getValueOfDealerHand()) {
+			System.out.print("Dealer hits, drawing a ");
+			hitDealer();
+		}
+		if (hand.getValueOfDealerHand() > 21) {
+			System.out.print("Dealer's hand: ");
+			showDealerHand();
+			System.out.println("\nDealer busts! You win!");
+			playAgain();
+		}
+		else if (hand.getValueOfDealerHand() > hand.getValueOfUserHand()) {
+			System.out.print("Dealer wins with a hand of ");
+			showDealerHand();
+			playAgain();
+		}
+		
+		if (hand.getValueOfDealerHand() == hand.getValueOfUserHand()) {
+			
+			System.out.print("Dealer's hand: " );
+			showDealerHand();
+			System.out.println("\nPush; nobody wins.");
+			playAgain();
+		} 
+	}
+
+	private void playAgain() {
+		System.out.println("\nWould you like to play again?");
+		playAgain = kb.next();
+		playAgain.toLowerCase();
+		
+		if (playAgain.contains("y")) {
+			
+			hand.resetHands();
+			run();
+		}
+		else {
+			System.out.println("Goodbye, " + userName + "!");
+			destroy();
+		}
 	}
 
 	public Deck getDeck() {
 		return d;
 	}
 
-	public void setDeck(Deck deck) {
-		this.d = deck;
-	}
-
 	public static BlackjackApp getApp() {
 		return app;
 	}
 
-	public static void setApp(BlackjackApp app) {
-		BlackjackApp.app = app;
-	}
-
 	public void hitUser() {
 		Card c = d.deck.remove(0);
-		System.out.println(c.toString());
+		System.out.println("\n" + c.toString());
 		hand.addToUserHand(c);
 	}
 
@@ -129,10 +165,31 @@ public class BlackjackApp {
 			System.out.println(userHand.get(i).toString());
 		}
 	}
+	
+	public void showDealerHand() {
+		List<Card> dealerHand = hand.getDealerHand();
+		for (int i = 0; i < dealerHand.size(); i++) {
+			
+			System.out.print(dealerHand.get(i).toString());
+			
+			if (i < dealerHand.size() - 2) {
+				System.out.print(", ");
+			}
+			else if (i == dealerHand.size() - 2) {
+				System.out.print(", and ");
+			}
+		}
+		System.out.println("; value: " + hand.getValueOfDealerHand() + "\n");
+	}
 
 	public void showDealerCard() {
 		List<Card> dealerHand = hand.getDealerHand();
-		System.out.println(dealerHand.get(0));
+		System.out.print(dealerHand.get(0));
+	}
+	
+	public void showDealerHoleCard() {
+		List<Card> dealerHand = hand.getDealerHand();
+		System.out.println(dealerHand.get(1) + "\n");
 	}
 
 	private void destroy() {

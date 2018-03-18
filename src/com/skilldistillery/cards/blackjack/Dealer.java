@@ -10,11 +10,13 @@ public class Dealer extends AbstractDealer {
 	public Dealer(String name, List<Card> dealerHand) {
 		super(name, dealerHand);
 	}
-
+	
 	@Override
 	protected boolean hitMe() {
 		
 		return false;
 	}
+	
+	
 	
 }

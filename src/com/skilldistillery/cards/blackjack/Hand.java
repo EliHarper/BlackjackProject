@@ -12,6 +12,21 @@ public class Hand {
 	public Hand(){
 	}
 	
+	public void resetHands() {
+		resetDealerHand();
+		resetUserHand();
+	}
+	
+	public List<Card> resetDealerHand(){
+		dealerHand.removeAll(dealerHand);
+		return dealerHand;
+	}
+	
+	public List<Card> resetUserHand(){
+		userHand.removeAll(userHand);
+		return userHand;
+	}
+	
 	public List<Card> getDealerHand(){
 		return dealerHand;
 	}
