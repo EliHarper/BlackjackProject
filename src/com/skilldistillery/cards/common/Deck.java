@@ -29,7 +29,8 @@ public class Deck {
 			System.out.println("\nDeck size is checked, 52 cards are present.");
 		}
 		else {
-			System.out.println("Somebody here is trying to cheat..");
+			System.out.println("\nDeck size is checked, " + deck.size() + " cards remain.");
+			
 		}
 	}
 

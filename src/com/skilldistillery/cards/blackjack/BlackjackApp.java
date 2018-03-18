@@ -9,6 +9,7 @@ import com.skilldistillery.cards.common.Deck;
 
 public class BlackjackApp {
 
+	private boolean won = false;
 	private Hand hand = new Hand();
 	static BlackjackApp app = new BlackjackApp();
 	private Deck d = new Deck();
@@ -21,7 +22,6 @@ public class BlackjackApp {
 
 		Dealer d = new Dealer("Doug", hand.getDealerHand());
 		User u = new User(userName, hand.getUserHand());
-		deckPrep();
 		giveUserHand();
 		giveDealerHand();
 
@@ -31,6 +31,10 @@ public class BlackjackApp {
 		showDealerCard();
 		System.out.println();
 		System.out.print("\nYour hand is worth " + hand.getValueOfUserHand() + ". ");
+		if (hand.getValueOfUserHand() == 21) {
+			System.out.println("Nice!");
+			dealerLogic();
+		}
 		System.out.println(userName + ", would you like to hit or to stay?");
 		String hitOrStay = kb.next();
 		if (hitOrStay.startsWith("h")) {
@@ -60,6 +64,7 @@ public class BlackjackApp {
 
 	public static void main(String[] args) {
 		app.preRun();
+		app.deckPrep();
 		app.run();
 	}
 
@@ -91,7 +96,8 @@ public class BlackjackApp {
 		if (hand.getValueOfDealerHand() > 21) {
 			System.out.print("Dealer's hand: ");
 			showDealerHand();
-			System.out.println("\nDealer busts! You win!");
+			System.out.println("Dealer busts! You win!");
+			won = true;
 			playAgain();
 		}
 		else if (hand.getValueOfDealerHand() > hand.getValueOfUserHand()) {
@@ -104,19 +110,37 @@ public class BlackjackApp {
 			
 			System.out.print("Dealer's hand: " );
 			showDealerHand();
-			System.out.println("\nPush; nobody wins.");
+			System.out.println("Push; nobody wins.");
 			playAgain();
 		} 
 	}
 
 	private void playAgain() {
+		
 		System.out.println("\nWould you like to play again?");
+		
+		if (won) {
+			System.out.println("Remember.. NEVER quit when you're on a heater.");
+		}
+		
 		playAgain = kb.next();
 		playAgain.toLowerCase();
 		
 		if (playAgain.contains("y")) {
-			
 			hand.resetHands();
+			won = false;
+			d.checkDeckSize(deck);
+			if (deck.size() < 4) {
+				System.out.println("Would you like to restart with a new deck?");
+				String restart = kb.next();
+				restart.toLowerCase();
+				if (restart.contains("y")) {
+					deckPrep();
+				}
+				else {
+					destroy();
+				}
+			}
 			run();
 		}
 		else {
