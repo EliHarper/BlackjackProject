@@ -10,9 +10,5 @@ public abstract class AbstractDealer extends Player {
 		super(name, hand);
 	}
 
-	protected boolean hitMe() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 }

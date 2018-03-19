@@ -3,8 +3,6 @@ package com.skilldistillery.cards.blackjack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Timer;
-
 import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
 
@@ -90,7 +88,7 @@ public class BlackjackApp {
 	protected void dealerLogic() {
 		System.out.println("\nDealer's hole card: ");
 		showDealerHoleCard();
-		while (hand.getValueOfUserHand() > hand.getValueOfDealerHand()) {
+		while (hand.getValueOfUserHand() > hand.getValueOfDealerHand() || hand.getValueOfDealerHand() < 17) {
 			System.out.print("Dealer hits, drawing a ");
 			hitDealer();
 		}

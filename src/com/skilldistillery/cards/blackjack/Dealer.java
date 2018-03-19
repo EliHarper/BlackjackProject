@@ -10,13 +10,12 @@ public class Dealer extends AbstractDealer {
 	public Dealer(String name, List<Card> dealerHand) {
 		super(name, dealerHand);
 	}
-	
+
 	@Override
 	protected boolean hitMe() {
-		
+		// TODO Auto-generated method stub
 		return false;
 	}
-	
 	
 	
 }

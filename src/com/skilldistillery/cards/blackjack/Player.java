@@ -8,7 +8,6 @@ public abstract class Player {
 	protected String name;
 	protected List <Card> hand;
 	public Player(String name, List<Card> hand) {
-		super();
 		this.name = name;
 		this.hand = hand;
 	}
