@@ -6,7 +6,7 @@
 
 ####Built with Java in Eclipse
 
-###This project was created to contain most of the aspects of a real game of blackjack. In order to create this app, I used the following classes:
+This project was created to contain most of the aspects of a real game of blackjack. In order to create this app, I used the following classes:
 *Player: an abstract class that gives its subclasses the states of name and hand, which all players who could be incorporated into this game will have
 *AbstractDealer: another abstract class that has been implemented for the sake of future additional states that may be exclusive to the dealer
 *Dealer: the class of the non-playing character that controls the logic while the user is not making choices; originally, I intended for the class to house this logic in its own methods, but its current chief responsibility is to keep its hand separate from the user's
