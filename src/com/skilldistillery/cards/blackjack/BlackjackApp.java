@@ -17,7 +17,7 @@ public class BlackjackApp {
 	private String userName = "";
 	private static Scanner kb = new Scanner(System.in);
 
-	private void run() {
+	private void run() throws InterruptedException {
 
 		Dealer d = new Dealer("Doug", hand.getDealerHand());
 		User u = new User(userName, hand.getUserHand());
@@ -61,7 +61,7 @@ public class BlackjackApp {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		app.preRun();
 		app.deckPrep();
 		app.run();
@@ -85,7 +85,7 @@ public class BlackjackApp {
 		d.shuffle(deck);
 	}
 	
-	protected void dealerLogic() {
+	protected void dealerLogic() throws InterruptedException {
 		System.out.println("\nDealer's hole card: ");
 		showDealerHoleCard();
 		while (hand.getValueOfUserHand() > hand.getValueOfDealerHand() || hand.getValueOfDealerHand() < 17) {
@@ -114,7 +114,7 @@ public class BlackjackApp {
 		} 
 	}
 
-	private void playAgain() {
+	private void playAgain() throws InterruptedException {
 		
 		System.out.println("Would you like to play again?");
 		
@@ -215,8 +215,10 @@ public class BlackjackApp {
 		System.out.println(dealerHand.get(1) + "\n");
 	}
 
-	private void destroy() {
+	private void destroy() throws InterruptedException {
 		System.err.println("Blackjack simulator self-destruct sequence engaged.");
+		Thread.sleep(10010);
+		System.err.println("BoOM!");
 		kb.close();
 		System.exit(0);
 	}
